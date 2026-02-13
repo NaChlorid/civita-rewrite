@@ -6,6 +6,11 @@
 
 from datetime import datetime
 from disnake import Color, Embed
+from mcstatus import JavaServer
+import shit_env
+
+env = shit_env.Env(".env")
+CAPI = env.Get("CAPI_ADDRESS")
 
 def TimeToReadble(start_time):
     now = datetime.utcnow()
@@ -86,6 +91,55 @@ def UnbanSuccessEmbed(ctx, member, reason):
         description=f"User {member} has been unbanned.\n Reason: {reason}\n Unbanned by {ctx.author.mention}",
         color=Color.green()
     )
+
+def ServerStatusEmbed(address):
+    server = JavaServer.lookup(address)
+
+    try:
+        status = server.status()
+    except Exception as e:
+        raise Exception(f"Could not get status: {e}")
+
+    try:
+        query = server.query()
+        player_list = ", ".join(query.players.names) if query.players.names else "No players listed"
+    except:
+        player_list = "Query disabled"
+
+    try:
+        ping = server.ping()
+    except:
+        ping = "Unknown"
+
+    return Embed(
+        title=f"{address} Status",
+        description=(
+            f"**General**\n"
+            f"IP: {address}\n"
+            f"Players: {status.players.online}/{status.players.max}\n"
+            f"Ping: {ping}\n\n"
+            f"**Players Online**\n"
+            f"{player_list}"
+        )
+    )
+
+def APIEmbed():
+    return Embed(
+        title=f"API Documentation",
+        description=f'''
+        CivitAPI is an API made with Flask which comes in the Civita-rewrite package.
+        It's a powerful API to get info about discord servers by their IDs and general Civita information which you can also get by using `$info bot`
+        
+        Current CAPI Host:
+        **{CAPI}**
+        
+        **Usage**
+        `/v2/server/<ID>` - Get information about a specific server by its ID
+        `/v2/server_count/` - Get Civita's server count
+        `/v2/servers` - Get all servers which use Civita (yes you agreed to that when you checked our Privacy Policy page ;) )        
+        '''
+    )
+
 
 def CMDFail():
     return Embed(

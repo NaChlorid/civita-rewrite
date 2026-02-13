@@ -20,7 +20,7 @@ import disnake
 import shit_env
 from disnake.ext import commands, tasks
 from embedium import BotinfoEmbed, ServerInfoEmbed, CommandsEmbed, BanSuccessEmbed, BanSuccessEmbed, \
-    CMDFail, KickSuccessEmbed, UnbanSuccessEmbed
+    CMDFail, KickSuccessEmbed, UnbanSuccessEmbed, ServerStatusEmbed, APIEmbed
 import asyncio
 from ollama import Client
 
@@ -47,8 +47,12 @@ async def on_ready():
     print(f"Logged in as {bot.user}")
     update_status.start()
 
-#@bot.command()
-#async def (ctx):
+@bot.command()
+async def mcjs_status(ctx, address):
+    try:
+        await ctx.send(embed=ServerStatusEmbed(address))
+    except Exception as e:
+        await ctx.send(f"Something went wrong, did you enter the port?\n if still doesnt work, please send the following text to opt1mi:\n```{e}```")
 
 @bot.command()
 async def info(ctx, additional):
@@ -62,7 +66,7 @@ async def info(ctx, additional):
         await ctx.send(embed=CommandsEmbed())
 
 @bot.command()
-async def ban(ctx, user: disnake.Member, reason):
+async def ban(ctx, user: disnake.Member, *, reason):
     if ctx.author.guild_permissions.ban_members:
         await user.ban(reason=reason)
         await ctx.send(embed=BanSuccessEmbed(ctx, user, reason=reason))
@@ -71,7 +75,7 @@ async def ban(ctx, user: disnake.Member, reason):
         await ctx.send(embed=CMDFail())
 
 @bot.command()
-async def kick(ctx, user: disnake.Member, reason):
+async def kick(ctx, user: disnake.Member, *, reason):
     if ctx.author.guild_permissions.kick_members:
         await user.kick(reason=reason)
         await ctx.send(embed=KickSuccessEmbed(ctx, user, reason=reason))
@@ -91,6 +95,10 @@ async def unban(ctx, user_ID: int, reason):
 
     else:
         await ctx.send(embed=CMDFail())
+
+@bot.command()
+async def api(ctx):
+    await ctx.send(embed=APIEmbed())
 
 @bot.command(name="ask")
 async def ask(ctx, *, question: str):
@@ -124,6 +132,6 @@ async def ask(ctx, *, question: str):
             await ctx.send(response)
 
     except Exception as e:
-        await ctx.send(f"AI exploded, what the fuck does the next line mean??:\n```{e}```")
+        await ctx.send(f"AI exploded, what the hell does the next line mean??:\n```{e}```")
 
 

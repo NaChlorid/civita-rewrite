@@ -8,7 +8,7 @@ CORS(app)
 # Home route
 @app.route('/')
 def home():
-    return "<h1>This is Civita's API Server</h1>"
+    return "<h1>This is Civita's API Server</h1><p>An A* Project</p>"
 
 # JSON API route: total server count
 @app.route('/v2/server_count')
