@@ -67,7 +67,7 @@ def CommandsEmbed():
     # Deport the data back to main.py
     return Embed(
         title=f"Commands",
-        description=f"**General**\n`$info bot/server/commands` - Prints information about the bot, it's commands or about the server. \n---\n**Moderation**\n`$ban (mention) (reason)` - ban a user\n`$kick (mention) (reason)` - kick a user\n`$unban (User ID) (reason)` - Unban a user\n",
+        description=f"**General**\n`$info bot/server/commands` - Prints information about the bot, it's commands or about the server. \n---\n**Moderation**\n`$ban (mention) (reason)` - ban a user\n`$kick (mention) (reason)` - kick a user\n`$unban (User ID) (reason)` - Unban a user\n\n**API**\n`$api` - Shows all the API features of Civita and CAPI\n\n**Minecraft Java Edition**\n`$mcjs_status (IP WITH PORT)` - Show the status of a minecraft: java edition server",
         color=Color.orange(),
     )
 
