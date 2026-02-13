@@ -22,12 +22,13 @@ from disnake.ext import commands, tasks
 from embedium import BotinfoEmbed, ServerInfoEmbed, CommandsEmbed, BanSuccessEmbed, BanSuccessEmbed, \
     CMDFail, KickSuccessEmbed, UnbanSuccessEmbed, ServerStatusEmbed, APIEmbed
 import asyncio
-from ollama import Client
+from google import genai
 
-ollama_client = Client()
+
 env = shit_env.Env(".env")
 VERSION = env.Get("VERSION")
-
+TOKEN_GENAI = env.Get("TOKEN_GEMINI")
+client = genai.Client(api_key=TOKEN_GENAI)
 intents = disnake.Intents.all()
 # intents.guilds = True     # Stupid Optimi doesnt know how to code. Burn in hell!
 start_time = datetime.utcnow()
@@ -103,35 +104,31 @@ async def api(ctx):
 @bot.command(name="ask")
 async def ask(ctx, *, question: str):
     """
-    Ask the Ollama model something.
+    Ask the Gemini model something (no chat history).
     Usage: $ask Why is the sky blue?
     """
-
     await ctx.trigger_typing()
 
     loop = asyncio.get_event_loop()
 
-    def run_ollama():
-        response_text = ""
-        for part in ollama_client.chat(
-            "mistral:7b-instruct",
-            messages=[{"role": "user", "content": question}],
-            stream=True
-        ):
-            response_text += part.message.content
-        return response_text
+    def run_gemini():
+        try:
+            # One-off chat; no history
+            chat = client.chats.create(model="gemini-2.5-flash-lite")
+            response = chat.send_message(question)
+            return response.text
+        except Exception as e:
+            return f"AI exploded, check this:\n{e}"
 
     try:
-        response = await loop.run_in_executor(None, run_ollama)
+        response_text = await loop.run_in_executor(None, run_gemini)
 
         # Discord message limit safety
-        if len(response) > 2000:
-            for i in range(0, len(response), 2000):
-                await ctx.send(response[i:i+2000])
+        if len(response_text) > 2000:
+            for i in range(0, len(response_text), 2000):
+                await ctx.send(response_text[i:i+2000])
         else:
-            await ctx.send(response)
+            await ctx.send(response_text)
 
     except Exception as e:
-        await ctx.send(f"AI exploded, what the hell does the next line mean??:\n```{e}```")
-
-
+        await ctx.send(f"Unexpected error:\n```{e}```")
