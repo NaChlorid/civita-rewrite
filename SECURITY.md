@@ -2,7 +2,7 @@
 At NaChlorid, we want to make sure our code is secure and
 safe to run. For this, we need our community's support.
 
-If you found any vunerabilities in the Civita Discord Bot or cAPI, please report them here
+If you found any vulnerabilities in the Civita Discord Bot or cAPI, please report them here
 
 ## Supported Versions
 
