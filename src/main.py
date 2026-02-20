@@ -6,6 +6,7 @@
 # with disnake, shit-env, and the MCstatus library
 #
 
+# -> Imports
 from datetime import datetime, UTC
 import disnake
 import shit_env
@@ -15,7 +16,7 @@ from .embedium import BotinfoEmbed, ServerInfoEmbed, CommandsEmbed, BanSuccessEm
 import asyncio
 from google import genai
 
-
+# -> Variables
 env = shit_env.Env(".env")
 VERSION = env.Get("VERSION")
 TOKEN_GENAI = env.Get("TOKEN_GEMINI")
@@ -23,29 +24,36 @@ client = genai.Client(api_key=TOKEN_GENAI)
 intents = disnake.Intents.all()
 start_time = datetime.now(UTC)
 
+# -> Initialise the bot
 bot = commands.Bot(intents=intents)
-bot.server_count = 25
+bot.server_count = 0
 
+# Update the status every 5 minutes
 @tasks.loop(minutes=5)
 async def update_status():
     bot.server_count = len(bot.guilds)
     activity = disnake.Game(f"{bot.server_count} Servers | {VERSION}")
     await bot.change_presence(activity=activity)
 
-
+# When the bot starts and is ready:
+# \
+#  | -> Say it
+#  | -> Start updating the status
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
     update_status.start()
 
-@bot.slash_command(name="mcjs_status")
+# mcjs command
+@bot.slash_command(name="mcjs_status", description="Get a Minecraft: Java Edition server status")
 async def mcjs_status(ctx, address: str):
     try:
         await ctx.send(embed=ServerStatusEmbed(address))
     except Exception as e:
         await ctx.send(f"Something went wrong, did you enter the port?\n if still doesnt work, please send the following text to opt1mi:\n```{e}```")
 
-@bot.slash_command(name="info")
+# info command
+@bot.slash_command(name="info", description="Get info about the bot/server or commands")
 async def info(ctx, additional: str):
     if additional == "bot":
         await ctx.send(embed=BotinfoEmbed(start_time, version=VERSION))
@@ -61,7 +69,12 @@ async def info(ctx, additional: str):
             "Invalid option for `/info`. Please use one of: `bot`, `server`, or `commands`."
         )
 
-@bot.slash_command(name="ban")
+#
+#   Moderation commands
+#
+
+#ban command
+@bot.slash_command(name="ban", description="Ban a user")
 async def ban(ctx, user: disnake.Member, *, reason):
     if ctx.author.guild_permissions.ban_members:
         await user.ban(reason=reason)
@@ -69,8 +82,8 @@ async def ban(ctx, user: disnake.Member, *, reason):
 
     else:
         await ctx.send(embed=CMDFail())
-
-@bot.slash_command(name="kick")
+#kick command
+@bot.slash_command(name="kick", description="Kick a user")
 async def kick(ctx, user: disnake.Member, *, reason):
     if ctx.author.guild_permissions.kick_members:
         await user.kick(reason=reason)
@@ -79,7 +92,8 @@ async def kick(ctx, user: disnake.Member, *, reason):
     else:
         await ctx.send(embed=CMDFail())
 
-@bot.slash_command(name="unban")
+#unban command
+@bot.slash_command(name="unban", description="Unban a user")
 async def unban(ctx, user_id: int, reason):
     if ctx.author.guild_permissions.ban_members:
         try:
@@ -91,16 +105,18 @@ async def unban(ctx, user_id: int, reason):
 
     else:
         await ctx.send(embed=CMDFail())
-
-@bot.slash_command(name="api")
+# API command
+@bot.slash_command(name="api", description="Get the cAPI documentation")
 async def api(ctx):
     await ctx.send(embed=APIEmbed())
 
-@bot.slash_command(name="coinflip")
+# Coinflip command
+@bot.slash_command(name="coinflip", description="Flip a coin")
 async def coinflip(ctx):
     await ctx.send(embed=CoinFlipEmbed())
 
-@bot.slash_command(name="ask")
+# Ask command
+@bot.slash_command(name="ask", description="Use the AI")
 async def ask(ctx, *, question: str):
     await ctx.trigger_typing()
 
