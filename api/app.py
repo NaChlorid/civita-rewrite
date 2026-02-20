@@ -48,4 +48,4 @@ def all_servers():
 
 # Start Flask in a separate thread to not block Disnake
 def start_flask():
-    app.run(port=7471)
+    app.run(port=7471, debug=False)
