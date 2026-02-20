@@ -12,7 +12,7 @@ import shit_env
 env = shit_env.Env(".env")
 CAPI = env.Get("CAPI_ADDRESS")
 
-def TimeToReadble(start_time):
+def TimeToReadable(start_time):
     now = datetime.now(UTC)
     delta = now - start_time
 
@@ -36,7 +36,7 @@ def BotinfoEmbed(start_time, version):
     # Deport the embed
     return Embed(
         title="Civita's Information",
-        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadble(start_time)}\nVersion: {version}",
+        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}",
         color=Color.orange(),
     )
 
