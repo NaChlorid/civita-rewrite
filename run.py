@@ -1,6 +1,6 @@
 # run.py
 import shit_env
-from main import bot
+from src.main import bot
 from api.app import start_flask
 import threading
 

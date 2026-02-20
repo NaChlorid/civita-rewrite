@@ -4,7 +4,7 @@
 # Civita discord bot.
 #
 
-from datetime import datetime
+from datetime import datetime, UTC
 from disnake import Color, Embed
 from mcstatus import JavaServer
 import shit_env
@@ -13,7 +13,7 @@ env = shit_env.Env(".env")
 CAPI = env.Get("CAPI_ADDRESS")
 
 def TimeToReadble(start_time):
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     delta = now - start_time
 
     days = delta.days
@@ -127,10 +127,10 @@ def APIEmbed():
     return Embed(
         title=f"API Documentation",
         description=f'''
-        CivitAPI is an API made with Flask which comes in the Civita-rewrite package.
+        cAPI is an API made with Flask which comes in the Civita-rewrite package.
         It's a powerful API to get info about discord servers by their IDs and general Civita information which you can also get by using `$info bot`
         
-        Current CAPI Host:
+        Current cAPI Host:
         **{CAPI}**
         
         **Usage**
@@ -140,6 +140,16 @@ def APIEmbed():
         '''
     )
 
+def CoinFlipEmbed():
+    import random
+    res = random.choice(['heads', 'tails'])
+    return Embed(
+        title=f"Coin Flip",
+        description=f'''
+            It's {res}
+        ''',
+        color=Color.green()
+    )
 
 def CMDFail():
     return Embed(
