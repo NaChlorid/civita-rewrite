@@ -103,12 +103,12 @@ def ServerStatusEmbed(address):
     try:
         query = server.query()
         player_list = ", ".join(query.players.names) if query.players.names else "No players listed"
-    except:
+    except Exception:
         player_list = "Query disabled"
 
     try:
         ping = server.ping()
-    except:
+    except Exception:
         ping = "Unknown"
 
     return Embed(
