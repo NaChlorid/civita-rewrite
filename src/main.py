@@ -39,7 +39,7 @@ async def on_ready():
     update_status.start()
 
 @bot.slash_command(name="mcjs_status")
-async def mcjs_status(ctx, address):
+async def mcjs_status(ctx, address: str):
     try:
         await ctx.send(embed=ServerStatusEmbed(address))
     except Exception as e:
