@@ -46,7 +46,7 @@ async def mcjs_status(ctx, address):
         await ctx.send(f"Something went wrong, did you enter the port?\n if still doesnt work, please send the following text to opt1mi:\n```{e}```")
 
 @bot.slash_command(name="info")
-async def info(ctx, additional):
+async def info(ctx, additional: str):
     if additional == "bot":
         await ctx.send(embed=BotinfoEmbed(start_time, version=VERSION))
 
