@@ -14,7 +14,6 @@
 #
 
 from datetime import datetime
-import mcstatus
 import disnake
 import shit_env
 from disnake.ext import commands, tasks
