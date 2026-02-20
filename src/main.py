@@ -3,7 +3,7 @@
 # This project is licensed under MIT.
 #
 # Civita is a multifunctional discord bot made
-# with disnake, shit-env, and pure columbian cocaine.
+# with disnake, shit-env, and the Google Gemini API.
 #
 
 from datetime import datetime, UTC
@@ -39,14 +39,14 @@ async def on_ready():
     update_status.start()
 
 @bot.slash_command(name="mcjs_status")
-async def mcjs_status(ctx, address):
+async def mcjs_status(ctx, address: str):
     try:
         await ctx.send(embed=ServerStatusEmbed(address))
     except Exception as e:
         await ctx.send(f"Something went wrong, did you enter the port?\n if still doesnt work, please send the following text to opt1mi:\n```{e}```")
 
 @bot.slash_command(name="info")
-async def info(ctx, additional):
+async def info(ctx, additional: str):
     if additional == "bot":
         await ctx.send(embed=BotinfoEmbed(start_time, version=VERSION))
 
@@ -55,6 +55,11 @@ async def info(ctx, additional):
 
     elif additional == "commands":
         await ctx.send(embed=CommandsEmbed())
+
+    else:
+        await ctx.send(
+            "Invalid option for `/info`. Please use one of: `bot`, `server`, or `commands`."
+        )
 
 @bot.slash_command(name="ban")
 async def ban(ctx, user: disnake.Member, *, reason):
