@@ -108,7 +108,7 @@ def ServerStatusEmbed(address):
 
     try:
         ping = server.ping()
-    except:
+    except Exception:
         ping = "Unknown"
 
     return Embed(
