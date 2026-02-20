@@ -3,7 +3,7 @@
 # This project is licensed under MIT.
 #
 # Civita is a multifunctional discord bot made
-# with disnake, shit-env, and pure columbian cocaine.
+# with disnake, shit-env, and the Google Gemini API.
 #
 
 from datetime import datetime, UTC
