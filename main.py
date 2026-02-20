@@ -13,7 +13,6 @@
 # "
 #
 
-from asyncio.base_events import Server
 from datetime import datetime
 import mcstatus
 import disnake
