@@ -56,6 +56,11 @@ async def info(ctx, additional):
     elif additional == "commands":
         await ctx.send(embed=CommandsEmbed())
 
+    else:
+        await ctx.send(
+            "Invalid option for `/info`. Please use one of: `bot`, `server`, or `commands`."
+        )
+
 @bot.slash_command(name="ban")
 async def ban(ctx, user: disnake.Member, *, reason):
     if ctx.author.guild_permissions.ban_members:
