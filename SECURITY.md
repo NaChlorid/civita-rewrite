@@ -6,8 +6,8 @@ If you found any vulnerabilities in the Civita Discord Bot or cAPI, please repor
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+The following table lists the versions of the Civita Discord Bot and cAPI that currently receive security updates.
+
 
 | Version | Supported          |
 |---------| ------------------ |
