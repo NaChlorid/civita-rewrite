@@ -7,7 +7,7 @@
 from datetime import datetime, UTC
 from disnake import Color, Embed
 from mcstatus import JavaServer
-import shit_env
+import config_env as shit_env
 import random
 
 env = shit_env.Env(".env")
@@ -99,7 +99,7 @@ def ServerStatusEmbed(address):
     try:
         status = server.status()
     except Exception as e:
-        raise Exception(f"Could not get status: {e}")
+        raise Exception(f"Failed to retrieve Minecraft server status for '{address}': {e}")
 
     try:
         query = server.query()
@@ -121,7 +121,8 @@ def ServerStatusEmbed(address):
             f"Ping: {ping}\n\n"
             f"**Players Online**\n"
             f"{player_list}"
-        )
+        ),
+        color=Color.green()
     )
 
 def APIEmbed():
@@ -138,11 +139,11 @@ def APIEmbed():
         `/v2/server/<ID>` - Get information about a specific server by its ID
         `/v2/server_count/` - Get Civita's server count
         `/v2/servers` - Get all servers which use Civita (yes you agreed to that when you checked our Privacy Policy page ;) )        
-        '''
+        ''',
+        color=Color.green()
     )
 
 def CoinFlipEmbed():
-    import random
     res = random.choice(['heads', 'tails'])
     return Embed(
         title=f"Coin Flip",
