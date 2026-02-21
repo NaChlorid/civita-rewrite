@@ -8,6 +8,7 @@ from datetime import datetime, UTC
 from disnake import Color, Embed
 from mcstatus import JavaServer
 import shit_env
+import random
 
 env = shit_env.Env(".env")
 CAPI = env.Get("CAPI_ADDRESS")
@@ -33,7 +34,7 @@ def TimeToReadable(start_time):
 
 
 def BotinfoEmbed(start_time, version):
-    # Deport the embed
+    # Return the embed
     return Embed(
         title="<:logo:1474439803670892737> Civita's Information",
         description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}",
@@ -46,7 +47,7 @@ def BotinfoEmbed(start_time, version):
 #
 def ServerInfoEmbed(ctx):
 
-    # Get some data before deporting it
+    # Get some data before returning it
     guild = ctx.guild
     server_name = guild.name
     member_count = guild.member_count
@@ -55,7 +56,7 @@ def ServerInfoEmbed(ctx):
     humans = sum(1 for member in ctx.guild.members if not member.bot)
     bots = sum(1 for member in ctx.guild.members if member.bot)
 
-    # Deport the data back to main.py
+    # Return the data back to main.py
     return Embed(
         title=f"Server Information",
         description=f"Server name: {server_name}\nMember count: {member_count} \nHumans: {humans} \nBots: {bots}\nOwner: {guild.owner}",
