@@ -138,7 +138,8 @@ def APIEmbed():
         `/v2/server/<ID>` - Get information about a specific server by its ID
         `/v2/server_count/` - Get Civita's server count
         `/v2/servers` - Get all servers which use Civita (yes you agreed to that when you checked our Privacy Policy page ;) )        
-        '''
+        ''',
+        color=Color.green()
     )
 
 def CoinFlipEmbed():
