@@ -35,7 +35,7 @@ def TimeToReadable(start_time):
 def BotinfoEmbed(start_time, version):
     # Deport the embed
     return Embed(
-        title="Civita's Information",
+        title="<:logo:1474439803670892737> Civita's Information",
         description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}",
         color=Color.orange(),
     )
@@ -73,21 +73,21 @@ def CommandsEmbed():
 
 def BanSuccessEmbed(ctx, member, reason):
     return Embed(
-        title="Success",
+        title="<:worked:1474435965530669098> Success",
         description=f"User {member} has been banned.\n Reason: {reason}\n Banned by {ctx.author.mention}",
         color=Color.green()
     )
 
 def KickSuccessEmbed(ctx, member, reason):
     return Embed(
-        title="Success",
+        title="<:worked:1474435965530669098> Success",
         description=f"User {member} has been kicked.\n Reason: {reason}\n Kicked by {ctx.author.mention}",
         color=Color.green()
     )
 
 def UnbanSuccessEmbed(ctx, member, reason):
     return Embed(
-        title="Success",
+        title="<:worked:1474435965530669098> Success",
         description=f"User {member} has been unbanned.\n Reason: {reason}\n Unbanned by {ctx.author.mention}",
         color=Color.green()
     )
@@ -112,7 +112,7 @@ def ServerStatusEmbed(address):
         ping = "Unknown"
 
     return Embed(
-        title=f"{address} Status",
+        title=f"<:mcserver:1474437524473647216> {address} Status",
         description=(
             f"**General**\n"
             f"IP: {address}\n"
@@ -151,9 +151,9 @@ def CoinFlipEmbed():
         color=Color.green()
     )
 
-def CMDFail():
+def CMDFail(err):
     return Embed(
-        title="Fail",
-        description="The command failed to run, do you have the privileges to run it?",
+        title="<:failed:1474435933465219216> Fail",
+        description=f"The command failed to run\n```{err}```",
         color=Color.red()
     )

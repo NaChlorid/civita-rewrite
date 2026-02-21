@@ -2,8 +2,8 @@
 It's a genocide. Please help Ukrainians defend freedom, democracy and Ukraine's right to exist.
 Click this button to see the donations page](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg "Stand with Ukraine")](https://stand-with-ukraine.pp.ua)
 # Civita-rewrite
-Civita is a "swiss knife" of discord bots made on Python with
-moderation tools and fun commands
+Civita is a "swiss knife" of discord bots made on Python with moderation tools and fun commands
+
 
 ## Why civita?
 - Civita is written by hand
@@ -21,4 +21,3 @@ moderation tools and fun commands
 - `/ban` - Bans a user
 - `/kick` - Kicks a user
 - `/unban` - Unbans the user
-

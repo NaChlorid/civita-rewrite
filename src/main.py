@@ -48,9 +48,10 @@ async def on_ready():
 @bot.slash_command(name="mcjs_status", description="Get a Minecraft: Java Edition server status")
 async def mcjs_status(ctx, address: str):
     try:
+        await ctx.response.defer()
         await ctx.send(embed=ServerStatusEmbed(address))
     except Exception as e:
-        await ctx.send(f"Something went wrong, did you enter the port?\n if still doesnt work, please send the following text to opt1mi:\n```{e}```")
+        await ctx.send(embed=CMDFail(e))
 
 # info command
 @bot.slash_command(name="info", description="Get info about the bot/server or commands")
@@ -81,7 +82,7 @@ async def ban(ctx, user: disnake.Member, *, reason):
         await ctx.send(embed=BanSuccessEmbed(ctx, user, reason=reason))
 
     else:
-        await ctx.send(embed=CMDFail())
+        await ctx.send(embed=CMDFail(f"{ctx.author} doesn't have the permissions to execute this!"))
 #kick command
 @bot.slash_command(name="kick", description="Kick a user")
 async def kick(ctx, user: disnake.Member, *, reason):
@@ -90,7 +91,7 @@ async def kick(ctx, user: disnake.Member, *, reason):
         await ctx.send(embed=KickSuccessEmbed(ctx, user, reason=reason))
 
     else:
-        await ctx.send(embed=CMDFail())
+        await ctx.send(embed=CMDFail(f"{ctx.author} doesn't have the permissions to execute this!"))
 
 #unban command
 @bot.slash_command(name="unban", description="Unban a user")
@@ -101,10 +102,10 @@ async def unban(ctx, user_id: int, reason):
             await ctx.guild.unban(user, reason=reason)
             await ctx.send(embed=UnbanSuccessEmbed(ctx, user, reason=reason))
         except Exception as e:
-            await ctx.send(f"Failed to unban user ID {user_id}: {e}")
+            await ctx.send(embed=CMDFail(e))
 
     else:
-        await ctx.send(embed=CMDFail())
+        await ctx.send(embed=CMDFail(f"{ctx.author} doesn't have the permissions to execute this!"))
 # API command
 @bot.slash_command(name="api", description="Get the cAPI documentation")
 async def api(ctx):
@@ -118,8 +119,7 @@ async def coinflip(ctx):
 # Ask command
 @bot.slash_command(name="ask", description="Use the AI")
 async def ask(ctx, *, question: str):
-    await ctx.trigger_typing()
-
+    await ctx.response.defer()
     loop = asyncio.get_event_loop()
 
     def run_gemini():
