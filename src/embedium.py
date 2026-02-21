@@ -121,7 +121,8 @@ def ServerStatusEmbed(address):
             f"Ping: {ping}\n\n"
             f"**Players Online**\n"
             f"{player_list}"
-        )
+        ),
+        color=Color.green()
     )
 
 def APIEmbed():
