@@ -99,7 +99,7 @@ def ServerStatusEmbed(address):
     try:
         status = server.status()
     except Exception as e:
-        raise Exception(f"Could not get status: {e}")
+        raise Exception(f"Failed to retrieve Minecraft server status for '{address}': {e}")
 
     try:
         query = server.query()
