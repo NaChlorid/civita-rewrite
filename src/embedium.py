@@ -142,7 +142,6 @@ def APIEmbed():
     )
 
 def CoinFlipEmbed():
-    import random
     res = random.choice(['heads', 'tails'])
     return Embed(
         title=f"Coin Flip",
