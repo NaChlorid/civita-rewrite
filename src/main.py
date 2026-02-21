@@ -3,7 +3,7 @@
 # This project is licensed under MIT.
 #
 # Civita is a multifunctional discord bot made
-# with disnake, shit-env, and the MCstatus library
+# with disnake, shit-env, and the mcstatus library
 #
 
 # -> Imports
