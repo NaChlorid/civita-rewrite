@@ -3,7 +3,7 @@
 # This project is licensed under MIT.
 #
 # Civita is a multifunctional discord bot made
-# with disnake, shit-env, and the MCstatus library
+# with disnake, shit-env, and the mcstatus library
 #
 
 # -> Imports
@@ -55,7 +55,10 @@ async def mcjs_status(ctx, address: str):
 
 # info command
 @bot.slash_command(name="info", description="Get info about the bot/server or commands")
-async def info(ctx, additional: str):
+async def info(
+    ctx,
+    additional: str = commands.Param(choices=["bot", "server", "commands"])
+):
     if additional == "bot":
         await ctx.send(embed=BotinfoEmbed(start_time, version=VERSION))
 
@@ -64,11 +67,6 @@ async def info(ctx, additional: str):
 
     elif additional == "commands":
         await ctx.send(embed=CommandsEmbed())
-
-    else:
-        await ctx.send(
-            "Invalid option for `/info`. Please use one of: `bot`, `server`, or `commands`."
-        )
 
 #
 #   Moderation commands
