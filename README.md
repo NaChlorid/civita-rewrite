@@ -2,6 +2,12 @@
 It's a genocide. Please help Ukrainians defend freedom, democracy and Ukraine's right to exist.
 Click this button to see the donations page](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg "Stand with Ukraine")](https://stand-with-ukraine.pp.ua)
 # Civita-rewrite
+![Gluten Free](https://img.shields.io/badge/gluten-free-brightgreen)
+![Vegan Code](https://img.shields.io/badge/vegan-code-green)
+![Organic](https://img.shields.io/badge/software-organic-success)
+![Non GMO](https://img.shields.io/badge/bugs-non%20GMO-yellow)
+
+
 Civita is a "swiss knife" of discord bots made on Python with moderation tools and fun commands
 
 
