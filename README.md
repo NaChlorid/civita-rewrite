@@ -1,8 +1,10 @@
 [![Russia invaded Ukraine, killing tens of thousands of civilians and displacing millions more.
 It's a genocide. Please help Ukrainians defend freedom, democracy and Ukraine's right to exist.
 Click this button to see the donations page](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg "Stand with Ukraine")](https://stand-with-ukraine.pp.ua)
-# Civita-rewrite
+# Civita-base
 Civita is a "swiss knife" of discord bots made on Python with moderation tools and fun commands
+
+This is the core with no Blends
 
 
 ## Why civita?
