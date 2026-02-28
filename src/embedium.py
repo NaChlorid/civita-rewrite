@@ -39,7 +39,7 @@ def BotinfoEmbed(start_time, version):
     # Return the embed
     return Embed(
         title="<:logo:1474439803670892737> Civita's Information",
-        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}\n\n Thanks to:\n - Opt1mi [Developer]\n - InfiniteX321 [Helper] \n - Frosteyyy__ [NaChlorid Team]\n\n Without these people Civita wouldn't exist right now, thank you to each one of them!\n\nFind my source code at https://git.chlorid.org/civita/civita-base",
+        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}\n\n Thanks to:\n - <:NaCl:1477258011415281765> Opt1mi [Developer]\n - <:InfX:1477258309097488385> InfiniteX321 [Helper] \n - <:NaCl:1477258011415281765> Frosteyyy__ [NaChlorid Team]\n\n Without these people Civita wouldn't exist right now, thank you to each one of them!\n\nFind my source code at https://git.chlorid.org/civita/civita-base",
         color=Color.orange(),
     )
 
