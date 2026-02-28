@@ -12,7 +12,7 @@ import disnake
 import shit_env
 from disnake.ext import commands, tasks
 from .embedium import BotinfoEmbed, ServerInfoEmbed, CommandsEmbed, BanSuccessEmbed, \
-    CMDFail, KickSuccessEmbed, UnbanSuccessEmbed, ServerStatusEmbed, APIEmbed, CoinFlipEmbed
+    CMDFail, KickSuccessEmbed, UnbanSuccessEmbed, ServerStatusEmbed, APIEmbed, CoinFlipEmbed, AnnounceEmbed
 import asyncio
 from google import genai
 
@@ -52,6 +52,19 @@ async def mcjs_status(ctx, address: str):
         await ctx.send(embed=ServerStatusEmbed(address))
     except Exception as e:
         await ctx.send(embed=CMDFail(e))
+
+@bot.slash_command(name="announce", description="[ADMIN ONLY] Sends a pretty announcement")
+async def announce(
+        ctx,
+        title,
+        text,
+        color: str = commands.Param(choices=["green", "red", "blurple", "blue"])
+):
+    if ctx.author.guild_permissions.administrator:
+        await ctx.send(embed=AnnounceEmbed(ctx, title, text, color))
+
+    else:
+        await ctx.send(embed=CMDFail(f"{ctx.author} doesn't have the permission to run this!"))
 
 # info command
 @bot.slash_command(name="info", description="Get info about the bot/server or commands")
@@ -122,7 +135,6 @@ async def ask(ctx, *, question: str):
 
     def run_gemini():
         try:
-            # One-off chat; no history
             chat = client.chats.create(model="gemini-2.5-flash-lite")
             response = chat.send_message(question)
             return response.text

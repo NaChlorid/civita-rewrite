@@ -5,6 +5,8 @@
 #
 
 from datetime import datetime, UTC
+
+import disnake
 from disnake import Color, Embed
 from mcstatus import JavaServer
 import shit_env
@@ -71,6 +73,42 @@ def CommandsEmbed():
         description=f"**General**\n`$info bot/server/commands` - Prints information about the bot, it's commands or about the server. \n---\n**Moderation**\n`$ban (mention) (reason)` - ban a user\n`$kick (mention) (reason)` - kick a user\n`$unban (User ID) (reason)` - Unban a user\n\n**API**\n`$api` - Shows all the API features of Civita and CAPI\n\n**Minecraft Java Edition**\n`$mcjs_status (IP WITH PORT)` - Show the status of a minecraft: java edition server",
         color=Color.orange(),
     )
+
+def AnnounceEmbed(ctx, title, text, color):
+    if color == "green":
+        return Embed(
+            title=title,
+            description=text,
+            color=disnake.Color.green()
+        )
+
+    if color == "red":
+        return Embed(
+            title=title,
+            description=text,
+            color=disnake.Color.red()
+        )
+
+    if color == "blue":
+        return Embed(
+            title=title,
+            description=text,
+            color=disnake.Color.blue()
+        )
+
+    if color == "blurple":
+        return Embed(
+            title=title,
+            description=text,
+            color=disnake.Color.blurple()
+        )
+
+    return Embed(
+        title=title,
+        description=text,
+        color=disnake.Color.light_gray()
+    )
+
 
 def BanSuccessEmbed(ctx, member, reason):
     return Embed(
