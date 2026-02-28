@@ -37,7 +37,7 @@ def BotinfoEmbed(start_time, version):
     # Return the embed
     return Embed(
         title="<:logo:1474439803670892737> Civita's Information",
-        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}",
+        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}\n\nFind my source code at https://git.chlorid.org/civita/civita-base",
         color=Color.orange(),
     )
 
