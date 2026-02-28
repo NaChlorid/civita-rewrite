@@ -14,6 +14,8 @@ This is the core with no Blends
 - Civita has a publicly accessible API(cAPI) which allows you to get server's data and etc. using code
 
 ## Commands
+**General**
+- `/announce (title) (text) (mode) (color)` - Sends an announcement
 **Fun**
 - `/mcjs_status` - Gets info of a minecraft server
 - `/coinflip` - Flips a coin(Heads or Tails)

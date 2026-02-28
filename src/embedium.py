@@ -39,7 +39,7 @@ def BotinfoEmbed(start_time, version):
     # Return the embed
     return Embed(
         title="<:logo:1474439803670892737> Civita's Information",
-        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}\n\nFind my source code at https://git.chlorid.org/civita/civita-base",
+        description=f"Civita is a multifunctional discord bot made on Python.\n\nUptime: {TimeToReadable(start_time)}\nVersion: {version}\n\n Thanks to:\n - Opt1mi [Developer]\n - InfiniteX321 [Helper] \n - Frosteyyy__ [NaChlorid Team]\n\n Without these people Civita wouldn't exist right now, thank you to each one of them!\n\nFind my source code at https://git.chlorid.org/civita/civita-base",
         color=Color.orange(),
     )
 
@@ -70,7 +70,7 @@ def CommandsEmbed():
     # Deport the data back to main.py
     return Embed(
         title=f"Commands",
-        description=f"**General**\n`$info bot/server/commands` - Prints information about the bot, it's commands or about the server. \n---\n**Moderation**\n`$ban (mention) (reason)` - ban a user\n`$kick (mention) (reason)` - kick a user\n`$unban (User ID) (reason)` - Unban a user\n\n**API**\n`$api` - Shows all the API features of Civita and CAPI\n\n**Minecraft Java Edition**\n`$mcjs_status (IP WITH PORT)` - Show the status of a minecraft: java edition server",
+        description=f"**General**\n`/announce` - Announce something to the server \n `/info bot/server/commands` - Prints information about the bot, it's commands or about the server. \n---\n**Moderation**\n`$ban (mention) (reason)` - ban a user\n`$kick (mention) (reason)` - kick a user\n`/unban (User ID) (reason)` - Unban a user\n\n**API**\n`/api` - Shows all the API features of Civita and CAPI\n\n**Fun**\n`/mcjs_status (IP WITH PORT)` - Show the status of a minecraft: java edition server\n`/coinflip` - flips a coin, I bet it's Tails :p",
         color=Color.orange(),
     )
 
