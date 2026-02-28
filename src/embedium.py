@@ -7,7 +7,7 @@
 from datetime import datetime, UTC
 from disnake import Color, Embed
 from mcstatus import JavaServer
-import config_env as shit_env
+import shit_env
 import random
 
 env = shit_env.Env(".env")
