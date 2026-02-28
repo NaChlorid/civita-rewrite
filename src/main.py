@@ -8,6 +8,8 @@
 
 # -> Imports
 from datetime import datetime, UTC
+from typing import Optional
+
 import disnake
 import shit_env
 from disnake.ext import commands, tasks
@@ -58,10 +60,15 @@ async def announce(
         ctx,
         title,
         text,
-        color: str = commands.Param(choices=["green", "red", "blurple", "blue"])
+        mode: str = commands.Param(choices=["message", "embed"]),
+        color: Optional[str] = commands.Param(choices=["green", "red", "blurple", "blue"])
 ):
     if ctx.author.guild_permissions.administrator:
-        await ctx.send(embed=AnnounceEmbed(ctx, title, text, color))
+        if mode == "embed":
+            await ctx.send(embed=AnnounceEmbed(ctx, title, text, color))
+
+        else:
+            await ctx.send(f'# {title}\n\n{text}')
 
     else:
         await ctx.send(embed=CMDFail(f"{ctx.author} doesn't have the permission to run this!"))
