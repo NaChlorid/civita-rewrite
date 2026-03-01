@@ -8,7 +8,7 @@ from datetime import datetime, UTC
 
 import disnake
 from disnake import Color, Embed
-from mcstatus import JavaServer
+from mcstatus import JavaServer, BedrockServer
 import shit_env
 import random
 
@@ -131,8 +131,40 @@ def UnbanSuccessEmbed(ctx, member, reason):
         color=Color.green()
     )
 
-def ServerStatusEmbed(address):
+def JavaStatusEmbed(address):
     server = JavaServer.lookup(address)
+
+    try:
+        status = server.status()
+    except Exception as e:
+        raise Exception(f"Failed to retrieve Minecraft server status for '{address}': {e}")
+
+    try:
+        query = server.query()
+        player_list = ", ".join(query.players.names) if query.players.names else "No players listed"
+    except Exception:
+        player_list = "Query disabled"
+
+    try:
+        ping = server.ping()
+    except Exception:
+        ping = "Unknown"
+
+    return Embed(
+        title=f"<:mcserver:1474437524473647216> {address} Status",
+        description=(
+            f"**General**\n"
+            f"IP: {address}\n"
+            f"Players: {status.players.online}/{status.players.max}\n"
+            f"Ping: {ping}\n\n"
+            f"**Players Online**\n"
+            f"{player_list}"
+        ),
+        color=Color.green()
+    )
+
+def BedrockStatusEmbed(address):
+    server = BedrockServer.lookup(address)
 
     try:
         status = server.status()
