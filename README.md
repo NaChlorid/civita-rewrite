@@ -16,6 +16,7 @@ This is the core with no Blends
 ## Commands
 **General**
 - `/announce (title) (text) (mode) (color)` - Sends an announcement
+  
 **Fun**
 - `/mcjs_status` - Gets info of a minecraft server
 - `/coinflip` - Flips a coin(Heads or Tails)
