@@ -14,7 +14,7 @@ import disnake
 import shit_env
 from disnake.ext import commands, tasks
 from .embedium import BotinfoEmbed, ServerInfoEmbed, CommandsEmbed, BanSuccessEmbed, \
-    CMDFail, KickSuccessEmbed, UnbanSuccessEmbed, ServerStatusEmbed, APIEmbed, CoinFlipEmbed, AnnounceEmbed
+    CMDFail, KickSuccessEmbed, UnbanSuccessEmbed, JavaStatusEmbed, BedrockStatusEmbed, APIEmbed, CoinFlipEmbed, AnnounceEmbed
 import asyncio
 from google import genai
 
@@ -46,12 +46,18 @@ async def on_ready():
     print(f"Logged in as {bot.user}")
     update_status.start()
 
-# mcjs command
-@bot.slash_command(name="mcjs_status", description="Get a Minecraft: Java Edition server status")
-async def mcjs_status(ctx, address: str):
+# MinecraftServer command
+@bot.slash_command(name="mc_server", description="Get a Minecraft server status")
+async def minecraftserver(ctx,
+                          address,
+                          edition: str = commands.Param(choices=["Bedrock", "Java"]),):
     try:
         await ctx.response.defer()
-        await ctx.send(embed=ServerStatusEmbed(address))
+        if edition == "Bedrock":
+            await ctx.send(embed=BedrockStatusEmbed(address))
+
+        else:
+            await ctx.send(embed=JavaStatusEmbed(address))
     except Exception as e:
         await ctx.send(embed=CMDFail(e))
 
