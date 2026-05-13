@@ -17,7 +17,10 @@ This is the core with no Blends.
 - `/announce (title) (text) (mode) (color)` - Sends an announcement
   
 **Fun**
-- `/mcjs_status` - Gets info of a minecraft server
+- `/mcstatus` - Gets info of a minecraft server
+- `/mcplayer` - Gets info about a Minecraft JE Player
+- `/mcwiki` - Get info about minecraft
+- 
 - `/coinflip` - Flips a coin(Heads or Tails)
 - More later...
 
